@@ -36,7 +36,7 @@ final class OverrideFirebirdKeywords implements KeywordLoader {
         try {
             return Files.lines(Path.of(keywordsFilePath), StandardCharsets.ISO_8859_1)
                     .map(String::trim)
-                    .filter(line -> !line.isEmpty())
+                    .filter(line -> !line.isEmpty() && !line.startsWith("#"))
                     .map(this::toFirebirdKeyword);
         } catch (IOException e) {
             throw new KeywordProcessingException("Keywords file not found or other IO error", e);
