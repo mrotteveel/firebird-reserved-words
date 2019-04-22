@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'nl.lawinegevaar.firebird'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.firebirdsql.jdbc:jaybird-jdk18:3.0.5'
+    implementation 'com.zaxxer:HikariCP:3.3.1'
+    implementation 'org.slf4j:slf4j-api:1.7.25'
+    implementation 'org.slf4j:slf4j-simple:1.7.25'
+    implementation 'commons-cli:commons-cli:1.4'
+
+    compileOnly 'org.projectlombok:lombok:1.18.4'
+    annotationProcessor 'org.projectlombok:lombok:1.18.4'
+}
