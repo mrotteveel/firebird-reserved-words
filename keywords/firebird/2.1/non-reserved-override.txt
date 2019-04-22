@@ -94,3 +94,6 @@ TANH
 TEMPORARY
 TRUNC
 WEEK
+
+# Manual fixes
+CEILING

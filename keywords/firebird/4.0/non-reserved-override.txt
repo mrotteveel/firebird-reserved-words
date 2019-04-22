@@ -255,3 +255,6 @@ TIES
 TOTALORDER
 TRAPS
 ZONE
+
+# Manual fixes
+SCHEMA
