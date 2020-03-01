@@ -101,7 +101,7 @@ public class PopulateFbKeywords {
                 .addOption(Option.builder()
                         .longOpt("keywords-source-file")
                         .hasArg().argName("FILENAME")
-                        .desc("Firebird keywords.cpp source file (yvalve/keywords.cpp or dsql/keywords.cpp)")
+                        .desc("Firebird keywords.cpp source file (common/keywords.cpp, yvalve/keywords.cpp or dsql/keywords.cpp)")
                         .build())
                 .addOption(Option.builder()
                         .longOpt("override-non-reserved")

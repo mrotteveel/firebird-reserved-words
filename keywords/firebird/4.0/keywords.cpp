@@ -252,6 +252,7 @@ static const TOK tokens[] =
 	{TOK_INSERT, "INSERT", false},
 	{TOK_INSERTING, "INSERTING", false},
 	{TOK_INT, "INT", false},
+	{TOK_INT128, "INT128", true},
 	{TOK_INTEGER, "INTEGER", false},
 	{TOK_INTO, "INTO", false},
 	{TOK_INVOKER, "INVOKER", true},
@@ -541,27 +542,7 @@ static const TOK tokens[] =
 	{0, NULL, false}
 };
 
-// This method is currently used in isql/isql.epp to check if a
-// user field is a reserved word, and hence needs to be quoted.
-// Obviously a hash table would make this a little quicker.
-// MOD 29-June-2002
-
-extern "C" {
-
-int API_ROUTINE KEYWORD_stringIsAToken(const char* in_str)
-{
-	for (const TOK* tok_ptr = tokens; tok_ptr->tok_string; ++tok_ptr)
-	{
-		if (!tok_ptr->nonReserved && !strcmp(tok_ptr->tok_string, in_str))
-			return true;
-	}
-
-	return false;
-}
-
-Tokens API_ROUTINE KEYWORD_getTokens()
+Tokens keywordGetTokens()
 {
 	return tokens;
-}
-
 }
