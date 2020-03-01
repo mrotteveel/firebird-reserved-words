@@ -98,7 +98,7 @@ final class FirebirdKeywordsFromSource implements KeywordLoader {
             Matcher matcher = KEYWORD_PATTERN.matcher(s);
             if (matcher.find()) {
                 String word = matcher.group(1);
-                boolean reserved = !Boolean.valueOf(matcher.group(2));
+                boolean reserved = !Boolean.parseBoolean(matcher.group(2));
                 return new FirebirdKeyword(word, firebirdVersion, reserved);
             }
             return null;
