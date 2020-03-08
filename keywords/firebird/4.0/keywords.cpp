@@ -204,6 +204,7 @@ static const TOK tokens[] =
 	{TOK_EXISTS, "EXISTS", false},
 	{TOK_EXIT, "EXIT", true},
 	{TOK_EXP, "EXP", true},
+	{TOK_EXTENDED, "EXTENDED", true},
 	{TOK_EXTERNAL, "EXTERNAL", false},
 	{TOK_EXTRACT, "EXTRACT", false},
 	{TOK_FALSE, "FALSE", false},
