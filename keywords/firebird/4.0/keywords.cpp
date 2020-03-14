@@ -253,7 +253,6 @@ static const TOK tokens[] =
 	{TOK_INSERT, "INSERT", false},
 	{TOK_INSERTING, "INSERTING", false},
 	{TOK_INT, "INT", false},
-	{TOK_INT128, "INT128", true},
 	{TOK_INTEGER, "INTEGER", false},
 	{TOK_INTO, "INTO", false},
 	{TOK_INVOKER, "INVOKER", true},
