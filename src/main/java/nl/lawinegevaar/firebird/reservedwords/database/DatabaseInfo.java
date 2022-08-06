@@ -38,6 +38,8 @@ public class DatabaseInfo {
     void createDatabaseIfNecessary() throws SQLException {
         try {
             FBManager fbManager = getFbManager();
+            // No need for UTF8, as all we store is plain ASCII
+            fbManager.setDefaultCharacterSet("win1252");
             // As forceCreate is false, will not do anything if db already exists
             fbManager.createDatabase(databaseName, user, password);
             fbManager.stop();
