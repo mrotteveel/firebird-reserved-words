@@ -5,19 +5,19 @@ plugins {
 group 'nl.lawinegevaar.firebird'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 11
+sourceCompatibility = 17
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.firebirdsql.jdbc:jaybird:4.0.4.java11'
-    implementation 'com.zaxxer:HikariCP:5.0.0'
-    implementation 'org.slf4j:slf4j-api:1.7.32'
-    implementation 'org.slf4j:slf4j-simple:1.7.32'
+    implementation 'org.firebirdsql.jdbc:jaybird:4.0.6.java11'
+    implementation 'com.zaxxer:HikariCP:5.0.1'
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+    implementation 'org.slf4j:slf4j-simple:1.7.36'
     implementation 'commons-cli:commons-cli:1.5.0'
 
-    compileOnly 'org.projectlombok:lombok:1.18.22'
-    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
 }
