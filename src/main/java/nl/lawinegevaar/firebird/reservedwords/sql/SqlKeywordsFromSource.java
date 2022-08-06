@@ -31,6 +31,7 @@ public class SqlKeywordsFromSource implements KeywordLoader {
         new MergeSqlKeywords(this::getKeywordStream).loadKeywords(dataSource);
     }
 
+    @SuppressWarnings("resource")
     private Stream<SqlKeyword> getKeywordStream() throws KeywordProcessingException {
         try {
             return Files.lines(Path.of(keywordsFilePath), StandardCharsets.ISO_8859_1)

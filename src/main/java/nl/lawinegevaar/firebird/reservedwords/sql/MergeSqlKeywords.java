@@ -15,19 +15,21 @@ final class MergeSqlKeywords extends AbstractSqlKeywordLoader {
 
     @Override
     String getStatement() {
-        return "merge into SQL_KEYWORD " +
-                "using ( " +
-                "  select " +
-                "    cast(? as varchar(50)) as WORD, " +
-                "    cast(? as smallint) as SQL_VERSION, " +
-                "    cast(? as boolean) as RESERVED " +
-                "  from RDB$DATABASE " +
-                ") as SRC " +
-                "on SQL_KEYWORD.WORD = SRC.WORD and SQL_KEYWORD.SQL_VERSION = SRC.SQL_VERSION " +
-                "when matched and SQL_KEYWORD.RESERVED <> SRC.RESERVED then " +
-                "  update set RESERVED = SRC.RESERVED " +
-                "when not matched then " +
-                "  insert (WORD, SQL_VERSION, RESERVED) values (SRC.WORD, SRC.SQL_VERSION, SRC.RESERVED)";
+        return """
+                merge into SQL_KEYWORD
+                using (
+                  select
+                    cast(? as varchar(50)) as WORD,
+                    cast(? as smallint) as SQL_VERSION,
+                    cast(? as boolean) as RESERVED
+                  from RDB$DATABASE
+                ) as SRC
+                on SQL_KEYWORD.WORD = SRC.WORD and SQL_KEYWORD.SQL_VERSION = SRC.SQL_VERSION
+                when matched and SQL_KEYWORD.RESERVED <> SRC.RESERVED then
+                  update set RESERVED = SRC.RESERVED
+                when not matched then
+                  insert (WORD, SQL_VERSION, RESERVED) values (SRC.WORD, SRC.SQL_VERSION, SRC.RESERVED)
+                """;
     }
 
     @Override

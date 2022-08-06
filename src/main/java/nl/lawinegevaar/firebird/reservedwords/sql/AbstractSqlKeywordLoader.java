@@ -69,9 +69,9 @@ abstract class AbstractSqlKeywordLoader implements KeywordLoader {
 
         void addBatch(SqlKeyword sqlKeyword) {
             try {
-                preparedStatement.setString(1, sqlKeyword.getWord());
-                preparedStatement.setInt(2, sqlKeyword.getSqlVersion());
-                preparedStatement.setBoolean(3, sqlKeyword.isReserved());
+                preparedStatement.setString(1, sqlKeyword.word());
+                preparedStatement.setInt(2, sqlKeyword.sqlVersion());
+                preparedStatement.setBoolean(3, sqlKeyword.reserved());
 
                 preparedStatement.addBatch();
             } catch (SQLException e) {

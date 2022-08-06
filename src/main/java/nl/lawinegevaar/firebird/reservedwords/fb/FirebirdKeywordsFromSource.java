@@ -33,6 +33,7 @@ final class FirebirdKeywordsFromSource implements KeywordLoader {
         new MergeFirebirdKeywords(this::getKeywordStream).loadKeywords(dataSource);
     }
 
+    @SuppressWarnings("resource")
     private Stream<FirebirdKeyword> getKeywordStream() throws KeywordProcessingException {
         try {
             return Files.lines(Path.of(keywordsFilePath), StandardCharsets.ISO_8859_1)
@@ -56,7 +57,7 @@ final class FirebirdKeywordsFromSource implements KeywordLoader {
     private class Firebird15KeywordParser implements Function<String, FirebirdKeyword> {
 
         // eg {BASENAME, "BASE_NAME", 1},
-        private final Pattern KEYWORD_PATTERN = Pattern.compile("\\{[^,]+,\\s*\"([^\"]+)\",\\s*[12]\\}");
+        private final Pattern KEYWORD_PATTERN = Pattern.compile("\\{[^,]+,\\s*\"([^\"]+)\",\\s*[12]}");
 
         @Override
         public FirebirdKeyword apply(String s) {
@@ -73,14 +74,14 @@ final class FirebirdKeywordsFromSource implements KeywordLoader {
 
         // eg {ABS, "ABS", 2, false},
         private final Pattern KEYWORD_PATTERN = Pattern.compile(
-                "\\{[^,]+,\\s*\"([^\"]+)\",\\s*[12],\\s*(\\w+)\\}");
+                "\\{[^,]+,\\s*\"([^\"]+)\",\\s*[12],\\s*(\\w+)}");
 
         @Override
         public FirebirdKeyword apply(String s) {
             Matcher matcher = KEYWORD_PATTERN.matcher(s);
             if (matcher.find()) {
                 String word = matcher.group(1);
-                boolean reserved = !Boolean.valueOf(matcher.group(2));
+                boolean reserved = !Boolean.parseBoolean(matcher.group(2));
                 return new FirebirdKeyword(word, firebirdVersion, reserved);
             }
             return null;
@@ -91,7 +92,7 @@ final class FirebirdKeywordsFromSource implements KeywordLoader {
 
         // eg {TOK_ABS, "ABS", true},
         private final Pattern KEYWORD_PATTERN = Pattern.compile(
-                "\\{[^,]+,\\s*\"([^\"]+)\",\\s*(true|false)\\}");
+                "\\{[^,]+,\\s*\"([^\"]+)\",\\s*(true|false)}");
 
         @Override
         public FirebirdKeyword apply(String s) {

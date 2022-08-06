@@ -15,19 +15,21 @@ final class MergeFirebirdKeywords extends AbstractFirebirdKeywordLoader {
 
     @Override
     String getStatement() {
-        return "merge into FB_KEYWORD " +
-                "using ( " +
-                "  select " +
-                "    cast(? as varchar(50)) as WORD, " +
-                "    cast(? as numeric(2,1)) as FB_VERSION, " +
-                "    cast(? as boolean) as RESERVED " +
-                "  from RDB$DATABASE " +
-                ") as SRC " +
-                "on FB_KEYWORD.WORD = SRC.WORD and FB_KEYWORD.FB_VERSION = SRC.FB_VERSION " +
-                "when matched and FB_KEYWORD.RESERVED <> SRC.RESERVED then " +
-                "  update set RESERVED = SRC.RESERVED " +
-                "when not matched then " +
-                "  insert (WORD, FB_VERSION, RESERVED) values (SRC.WORD, SRC.FB_VERSION, SRC.RESERVED)";
+        return """
+                merge into FB_KEYWORD
+                using (
+                  select
+                    cast(? as varchar(50)) as WORD,
+                    cast(? as numeric(2,1)) as FB_VERSION,
+                    cast(? as boolean) as RESERVED
+                  from RDB$DATABASE
+                ) as SRC
+                on FB_KEYWORD.WORD = SRC.WORD and FB_KEYWORD.FB_VERSION = SRC.FB_VERSION
+                when matched and FB_KEYWORD.RESERVED <> SRC.RESERVED then
+                  update set RESERVED = SRC.RESERVED
+                when not matched then
+                  insert (WORD, FB_VERSION, RESERVED) values (SRC.WORD, SRC.FB_VERSION, SRC.RESERVED)
+                """;
     }
 
     @Override

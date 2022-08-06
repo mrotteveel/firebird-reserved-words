@@ -32,6 +32,7 @@ final class OverrideFirebirdKeywords implements KeywordLoader {
         new MergeFirebirdKeywords(this::getKeywordStream).loadKeywords(dataSource);
     }
 
+    @SuppressWarnings("resource")
     private Stream<FirebirdKeyword> getKeywordStream() throws KeywordProcessingException {
         try {
             return Files.lines(Path.of(keywordsFilePath), StandardCharsets.ISO_8859_1)

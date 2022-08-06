@@ -69,9 +69,9 @@ abstract class AbstractFirebirdKeywordLoader implements KeywordLoader {
 
         void addBatch(FirebirdKeyword firebirdKeyword) {
             try {
-                preparedStatement.setString(1, firebirdKeyword.getWord());
-                preparedStatement.setBigDecimal(2, firebirdKeyword.getFirebirdVersion());
-                preparedStatement.setBoolean(3, firebirdKeyword.isReserved());
+                preparedStatement.setString(1, firebirdKeyword.word());
+                preparedStatement.setBigDecimal(2, firebirdKeyword.firebirdVersion());
+                preparedStatement.setBoolean(3, firebirdKeyword.reserved());
 
                 preparedStatement.addBatch();
             } catch (SQLException e) {

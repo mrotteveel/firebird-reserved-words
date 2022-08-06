@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import nl.lawinegevaar.firebird.reservedwords.KeywordProcessingException;
 
 import javax.sql.DataSource;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
