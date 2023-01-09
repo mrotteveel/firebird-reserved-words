@@ -19,6 +19,17 @@ For SQL:2003
 --non-reserved keywords\sql\2003\non-reserved.txt
 ```
 
+For Firebird 5:
+
+```
+--version 5.0 
+--keywords-source-file keywords\firebird\5.0\keywords.cpp 
+--override-non-reserved keywords\firebird\5.0\non-reserved-override.txt 
+--override-reserved keywords\firebird\5.0\reserved-override.txt 
+--delete-keywords keywords\firebird\fb_general_keywords_to_remove.txt 
+--delete-keywords keywords\firebird\5.0\delete-keywords.txt 
+```
+
 For Firebird 4:
 
 ```
