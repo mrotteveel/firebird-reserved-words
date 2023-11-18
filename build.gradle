@@ -12,13 +12,13 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.firebirdsql.jdbc:jaybird:4.0.8.java11'
-    implementation 'com.zaxxer:HikariCP:5.0.1'
-    implementation 'org.slf4j:slf4j-api:1.7.36'
-    implementation 'org.slf4j:slf4j-simple:1.7.36'
-    implementation 'commons-cli:commons-cli:1.5.0'
-    implementation 'org.flywaydb:flyway-firebird:9.11.0'
+    implementation 'org.firebirdsql.jdbc:jaybird:5.0.2.java11'
+    implementation 'com.zaxxer:HikariCP:5.1.0'
+    implementation 'org.slf4j:slf4j-api:2.0.9'
+    implementation 'org.slf4j:slf4j-simple:2.0.9'
+    implementation 'commons-cli:commons-cli:1.6.0'
+    implementation 'org.flywaydb:flyway-firebird:10.0.1'
 
-    compileOnly 'org.projectlombok:lombok:1.18.24'
-    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
 }
