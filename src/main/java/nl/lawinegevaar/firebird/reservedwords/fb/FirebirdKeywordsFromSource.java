@@ -47,6 +47,8 @@ final class FirebirdKeywordsFromSource implements KeywordLoader {
     private Function<String, FirebirdKeyword> getKeywordFunction() {
         if (new BigDecimal("1.5").compareTo(firebirdVersion) >= 0) {
             return new Firebird15KeywordParser();
+        } else if (new BigDecimal("5.0").compareTo(firebirdVersion) <= 0) {
+            return new Firebird50KeywordParser();
         } else if (new BigDecimal("4.0").compareTo(firebirdVersion) <= 0) {
             return new Firebird40KeywordParser();
         } else {
@@ -106,5 +108,23 @@ final class FirebirdKeywordsFromSource implements KeywordLoader {
         }
     }
 
+    private class Firebird50KeywordParser implements Function<String, FirebirdKeyword> {
+
+        // e.g. PARSER_TOKEN(TOK_ABS, "ABS", true)
+        private final Pattern KEYWORD_PATTERN = Pattern.compile(
+                "PARSER_TOKEN\\([^,]+,\\s*\"([^\"]+)\",\\s*(true|false)\\)");
+
+        @Override
+        public FirebirdKeyword apply(String s) {
+            Matcher matcher = KEYWORD_PATTERN.matcher(s);
+            if (matcher.find()) {
+                String word = matcher.group(1);
+                boolean reserved = !Boolean.parseBoolean(matcher.group(2));
+                return new FirebirdKeyword(word, firebirdVersion, reserved);
+            }
+            return null;
+        }
+
+    }
 
 }
